@@ -1,0 +1,4 @@
+webpack 打包后生成包涵hash的文件,这样会导致build目录中包涵很多类似文件
+例如入口文件为index1,index2,index3生成含有hash的文件为
+index1.hash.js,index2.hash.js,index3.hash.js
+由于hash不同所以build中会包涵很多文件.通过该plugin会删除较老的文件.
