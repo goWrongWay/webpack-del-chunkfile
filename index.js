@@ -18,16 +18,25 @@ WebpackDelChunkfile.prototype.apply = function (compiler) {
             newFilename.push(chunkNames[f]);
             chunkNamesKey.push(f);
         }
-        fs.readdir('public/build', function (err, path) {
+        fs.readdir('build', function (err, path) {
             for (var k = 0; k < chunkNamesKey.length; k++) {
                 for (var b = 0; b < path.length; b++) {
-                    if (path[b].indexOf(chunkNamesKey[k]) === 0) {
-                        if (newFilename.toString().indexOf(path[b]) === -1) {
-                            var file = path[b];
-                            exec('rm public/build/' + file, function (err, out) {
-                                console.log('delete file ' + file + ' success');
-                                err && console.log(err);
-                            });
+                    var list = fs.readdirSync('build/' + path[b])
+                    if(list.length) {
+                        var flist = list;
+                        for (var s = 0; s < flist.length; s+=1) {
+                            if (flist[s].toString().indexOf(chunkNamesKey[k]) === 0) {
+                                if (newFilename.toString().indexOf(flist[s].toString()) === -1) {
+                                    if (flist[s].toString().length < 10) {
+                                        return false;
+                                    }
+                                    var file = path[b] + '/' + flist[s];
+                                    exec('rm build/' + file, function (err, out) {
+                                        console.log('delete file ' + file + ' success');
+                                        err && console.log(err);
+                                    });
+                                }
+                            }
                         }
                     }
                 }

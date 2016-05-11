@@ -1,11 +1,19 @@
 {
   "name": "webpackdelchunkfile",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "webpack 打包后生成包涵hash的文件,这样会导致build目录中包涵很多类似文件 例如入口文件为index1,index2,index3生成含有hash的文件为 index1.hash.js,index2.hash.js,index3.hash.js 由于hash不同所以build中会包涵很多文件.通过该plugin会删除较老的文件.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goWrongWay/webpack-del-chunkfile.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goWrongWay/webpack-del-chunkfile/issues"
+  },
+  "homepage": "https://github.com/goWrongWay/webpack-del-chunkfile#readme"
 }
